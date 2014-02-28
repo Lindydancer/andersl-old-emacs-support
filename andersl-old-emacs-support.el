@@ -4,7 +4,8 @@
 ;; Copyright (C) 1985-1987, 1993-2013 Free Software Foundation, Inc.
 
 ;; Author: Anders Lindgren
-;; Version: 0.0.0
+;; Version: 0.0.1
+;; URL: https://github.com/Lindydancer/andersl-old-emacs-support
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,11 +21,6 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-
-
-
-
-
 
 ;; This package provides features needed to use my packages on older
 ;; Emacs versions. Supported Emacs versions are 22.x, 23.x, and 24.x.
@@ -58,6 +54,51 @@
 ;; whereas `window-text-width' does not.
 (unless (fboundp 'window-text-width)
   (defalias 'window-text-width 'window-width))
+
+
+;; ------------------------------------------------------------
+;; Frame functions
+;;
+
+(unless (fboundp 'frame-border-width)
+  (defun frame-border-width (&optional frame)
+    "Return border width of FRAME in pixels."
+    (let ((pair (assq 'internal-border-width (frame-parameters frame))))
+      (if pair
+          (cdr pair)
+        0))))
+
+
+(unless (fboundp 'frame-scroll-bar-width)
+  (defun frame-scroll-bar-width (&optional frame)
+    "Return scroll bar width of FRAME in pixels."
+    (let ((pair (assq 'scroll-bar-width (frame-parameters frame))))
+      (if pair
+          (cdr pair)
+        0))))
+
+
+(unless (fboundp 'frame-fringe-width)
+  (defun frame-fringe-width (&optional frame)
+    "Return fringe width of FRAME in pixels."
+    (let ((left-pair (assq 'left-fringe (frame-parameters frame)))
+          (right-pair (assq 'right-fringe (frame-parameters frame))))
+      (+ (if left-pair (cdr left-pair) 0)
+         (if right-pair (cdr right-pair) 0)))))
+
+
+(unless (fboundp 'frame-text-width)
+  (defun frame-text-width (&optional frame)
+    "Return text area width of FRAME in pixels."
+    (* (frame-width frame)
+       (frame-char-width frame))))
+
+
+(unless (fboundp 'frame-text-height)
+  (defun frame-text-height (&optional frame)
+    "Return text area height of FRAME in pixels."
+    (* (frame-height frame)
+       (frame-char-height frame))))
 
 
 ;; ------------------------------------------------------------

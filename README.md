@@ -1,7 +1,8 @@
 # andersl-old-emacs-support - Features needed to use old Emacs versions
 
 *Author:* Anders Lindgren<br>
-*Version:* 0.0.0<br>
+*Version:* 0.0.1<br>
+*URL:* [https://github.com/Lindydancer/andersl-old-emacs-support](https://github.com/Lindydancer/andersl-old-emacs-support)<br>
 
 This package provides features needed to use my packages on older
 Emacs versions. Supported Emacs versions are 22.x, 23.x, and 24.x.
@@ -18,4 +19,4 @@ in future Emacs distributions.
 
 
 ---
-Converted from `andersl-old-emacs-support.el` by *el2markup*.
+Converted from `andersl-old-emacs-support.el` by [*el2markup*](https://github.com/Lindydancer/el2markdown).
